@@ -12,7 +12,8 @@
         "guzzlehttp/guzzle": "=6.5.8",
         "laravel/framework": "6.20.*",
         "laravel/helpers": "^1.4",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "smalot/pdfparser": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
