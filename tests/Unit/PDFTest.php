@@ -92,10 +92,7 @@ class PDFTest extends TestCase
         $this->assertEquals(1, count($pages), 'PDF should have 1 page');
 
         $text = $pages[0]->getText();
-        $pageMetadata = $pages[0]->getDetails();
-
-        print($pageMetadata);
-
+        
         $this->assertStringContainsString('42', $text, 'PDF should contain text for invoice id "43"');
         $this->assertStringContainsString('€', $text, 'PDF should contain text for currency symbol "€"');
         $this->assertStringContainsString('12 Mar 2018', $text, 'PDF should contain text for invoice date "12 Mar 2018"');
