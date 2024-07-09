@@ -77,9 +77,9 @@ class PDFTest extends TestCase
             $data['items'],
             $data['customer'],
             $data['company'],
-            $data['sub_total'],
-            $data['tax_total'],
-            $data['total']
+            44,
+            8.8,
+            50.8
         );
 
         $pdfContent = $pdf->build('default');
@@ -94,5 +94,8 @@ class PDFTest extends TestCase
         $text = $pages[0]->getText();
         
         $this->assertStringContainsString('43', $text, 'Should contain text for invoice id: "43"');
+        $this->assertStringContainsString('44 €', $text, 'Should contain text for subtotal 44 €"');
+        $this->assertStringContainsString('8.8 €', $text, 'Should contain text for taxes 8.8 €"');
+        $this->assertStringContainsString('50.8 €', $text, 'Should contain text for total 50.8 €"');
     }
 }
