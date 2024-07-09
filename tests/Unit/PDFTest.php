@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Helpers\PDF;
 use Smalot\PdfParser\Parser;
 
