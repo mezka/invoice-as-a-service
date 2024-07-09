@@ -86,13 +86,12 @@ class PDFTest extends TestCase
         $pdfContent = $pdf->build('default');
         
         $pdfParser = new Parser();
-        $pdf = $pdfParser->parseContent($pdfContent);
+        $parsedPdf = $pdfParser->parseContent($pdfContent);
 
-        $pages = $pdf->getPages();
-
+        $pages = $parsedPdf->getPages();
         $this->assertEquals(1, count($pages), 'PDF should have 1 page');
 
-        $text = $pages[0]->getText();
+        $text = $parsedPdf->getText();
 
         $this->assertStringContainsString('43', $text, 'Should contain text for invoice id: "43"');
         $this->assertStringContainsString('€', $text, 'Should contain text for currency symbol: "€"');
