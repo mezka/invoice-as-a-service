@@ -32,7 +32,7 @@ class PDFTest extends TestCase
                 [
                     "title" => "'Growth' plan Screeb.app",
                     "description" => "1 year subscription",
-                    "price" => 42,
+                    "price" => 12,
                     "quantity" => 1,
                     "tax" => 20
                 ]
@@ -92,8 +92,40 @@ class PDFTest extends TestCase
         $this->assertEquals(1, count($pages), 'PDF should have 1 page');
 
         $text = $pages[0]->getText();
-        
+
         $this->assertStringContainsString('43', $text, 'Should contain text for invoice id: "43"');
+        $this->assertStringContainsString('€', $text, 'Should contain text for currency symbol: "€"');
+        $this->assertStringContainsString('12 Mar 2018', $text, 'Should contain text for invoice date "12 Mar 2018"');
+        $this->assertStringContainsString('19 Mar 2018', $text, 'Should contain text for invoice due date: "19 Mar 2018');
+        $this->assertStringContainsString('https://screeb.app/user/invoices/42/pay', $text, 'Should contain text for payment link: "https://screeb.app/user/invoices/42/pay"');
+        $this->assertStringContainsString('Lorem ipsum dolor sit amet.', $text, 'Should contain text for notes: "Lorem ipsum dolor sit amet."');
+        
+        $this->assertStringContainsString("'Growth' plan Screeb.app", $text, "Should contain text for item title: 'Growth' plan Screeb.app");
+        $this->assertStringContainsString("1 year subscription", $text, 'Should contain text for item description: "1 year subscription"');
+        $this->assertStringContainsString("12 €", $text, 'Should contain text for item price: "12 €"');
+        $this->assertStringContainsString("1", $text, 'Should contain text for item quantity: "1"');
+        $this->assertStringContainsString("20 %", $text, 'Should contain text for item tax percentage: "20 %"');
+
+        $this->assertStringContainsString("John Doe", $text, 'Should contain text for customer summary: "John Doe"');
+        $this->assertStringContainsString('Baxter Building, 42nd street, Madison Avenue', $text, 'Should contain customer address line 1');
+        $this->assertStringContainsString('Manhattan, NY, 11234', $text, 'Should contain customer address line 2');
+        $this->assertStringContainsString('United States', $text, 'Should contain customer address line 3');
+        $this->assertStringContainsString('Earth', $text, 'Should contain customer address line 4');
+        $this->assertStringContainsString('1-888-548-0034', $text, 'Should contain customer phone');
+        $this->assertStringContainsString('john@gmail.com', $text, 'Should contain customer email');
+
+        $this->assertStringContainsString('Screeb', $text, 'Should contain company summary');
+        $this->assertStringContainsString('123, place de Bretagne', $text, 'Should contain company address line 1');
+        $this->assertStringContainsString('44000 Nantes', $text, 'Should contain company address line 2');
+        $this->assertStringContainsString('France', $text, 'Should contain company address line 3');
+        $this->assertStringContainsString('Earth', $text, 'Should contain company address line 4');
+        $this->assertStringContainsString('1-888-548-0034', $text, 'Should contain company phone');
+        $this->assertStringContainsString('billing@screeb.app', $text, 'Should contain company email');
+
+        $this->assertStringContainsString('EMEA office', $text, 'Should contain company other detail');
+        $this->assertStringContainsString('Business hours', $text, 'Should contain company business hours title');
+        $this->assertStringContainsString('9am - 6pm', $text, 'Should contain company business hours content');
+
         $this->assertStringContainsString('44 €', $text, 'Should contain text for subtotal 44 €"');
         $this->assertStringContainsString('8.8 €', $text, 'Should contain text for taxes 8.8 €"');
         $this->assertStringContainsString('50.8 €', $text, 'Should contain text for total 50.8 €"');
