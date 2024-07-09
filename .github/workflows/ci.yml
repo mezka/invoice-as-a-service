@@ -25,5 +25,8 @@ jobs:
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Clear test cache
+      run: rm -rf .phpunit
+
     - name: Run tests
       run: vendor/bin/phpunit --verbose
