@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Helpers\PDF;
 use Smalot\PdfParser\Parser;
 
-class TestPDF extends TestCase
+class PDFTest extends TestCase
 {
     /**
      * A basic test example.
