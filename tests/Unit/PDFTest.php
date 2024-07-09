@@ -34,7 +34,8 @@ class PDFTest extends TestCase
                     "description" => "1 year subscription",
                     "price" => 12,
                     "quantity" => 1,
-                    "tax" => 20
+                    "tax" => 20,
+                    "total" => 14.4
                 ]
             ],
             "customer" => [
@@ -99,7 +100,7 @@ class PDFTest extends TestCase
         $this->assertStringContainsString('19 Mar 2018', $text, 'Should contain text for invoice due date: "19 Mar 2018');
         $this->assertStringContainsString('https://screeb.app/user/invoices/42/pay', $text, 'Should contain text for payment link: "https://screeb.app/user/invoices/42/pay"');
         $this->assertStringContainsString('Lorem ipsum dolor sit amet.', $text, 'Should contain text for notes: "Lorem ipsum dolor sit amet."');
-        
+
         $this->assertStringContainsString("'Growth' plan Screeb.app", $text, "Should contain text for item title: 'Growth' plan Screeb.app");
         $this->assertStringContainsString("1 year subscription", $text, 'Should contain text for item description: "1 year subscription"');
         $this->assertStringContainsString("12 €", $text, 'Should contain text for item price: "12 €"');
