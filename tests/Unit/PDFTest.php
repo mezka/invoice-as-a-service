@@ -84,9 +84,8 @@ class PDFTest extends TestCase
         );
 
         $pdfContent = $pdf->build('default');
-        file_put_contents('php://memory', $pdfContent);
         
-        $pdfParser = Parser();
+        $pdfParser = new Parser();
         $pdf = $pdfParser->parseContent($pdfContent);
 
         $pages = $pdf->getPages();
