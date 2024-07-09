@@ -9,7 +9,7 @@ use Smalot\PdfParser\Parser;
 class PDFTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Test for the App\Helpers\PDF class.
      *
      * @return void
      */
